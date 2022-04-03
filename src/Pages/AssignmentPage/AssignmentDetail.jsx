@@ -4,7 +4,7 @@ import Button from "../Button";
 import DD from "../DD";
 import DT from "../DT";
 import H3 from "../H3";
-import assignmentsDetails from "../mockData";
+import { assignmentsDetails } from "../mockData";
 import { VscLinkExternal } from "react-icons/vsc";
 function AssignmentDetail() {
     const data = useParams();
