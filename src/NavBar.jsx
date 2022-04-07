@@ -10,8 +10,8 @@ function NavBar() {
         <div className="flex flex-col justify-between h-full">
             <div className="flex flex-col space-y-1 mt-5">
                 <NavLink icon={<MdOutlineQuiz className="h-6 w-6 " />} to='/quiz'>Quiz</NavLink>
-                <NavLink icon={<GiTeacher className="h-6 w-6" />} to="/assignments">Assignment</NavLink>
-                <NavLink icon={<MdAssignment className="h-6 w-6" />} to="/lectures">Lectures</NavLink>
+                <NavLink icon={<GiTeacher className="h-6 w-6" />} to="/lectures">Lectures</NavLink>
+                <NavLink icon={<MdAssignment className="h-6 w-6" />} to="/assignments">Assignments</NavLink>
             </div>
             <div className="flex flex-col space-y-1">
                 <NavLink icon={<CgProfile className="h-6 w-6" />} to='/profie'>Profile</NavLink>

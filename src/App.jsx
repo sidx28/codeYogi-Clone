@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import MainLayout from "./MainLayout";
 import Lecture from "./Pages/LecturePage/Lecture";
 import Assignment from "./Pages/AssignmentPage/Assignment";
-import Quiz from "./Pages/Quiz";
+import Quiz from "./Pages/QuizPage/Quiz";
 import AssignmentDetail from "./Pages/AssignmentPage/AssignmentDetail";
 
 

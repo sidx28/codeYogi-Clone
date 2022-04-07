@@ -1,23 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../Button";
-import { assignmentsDetails } from "../mockData";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { VscLinkExternal } from "react-icons/vsc";
 
 function AssignmentTile(props) {
-  const { assignmentNumber, createdOn, title, dueDate } = props.assignment;
+  const { id, created_at, title, due_date } = props.assignment;
   return (
     <li className="w-full border-2 border-gray-100 bg-white rounded-lg shadow-lg mb-5 list-none " >
       <div className="flex flex-col items-center justify-between w-full p-3">
-        <Link to={`/assignment/${assignmentNumber}/details`} className="w-full">
+        <Link to={`/assignment/${id}/details`} className="w-full">
           <div className="flex justify-between items-center flex-row">
             <div>
               <div className="flex flex-row">
-                <h3 className="font-medium text-gray-900">#{assignmentNumber} {title}</h3>
-                <span className="text-gray-500 font-semibold ml-3">( {createdOn} )</span>
+                <h3 className="font-medium text-gray-900">#{id} {title}</h3>
+                <span className="text-gray-500 font-semibold ml-3">( {created_at} )</span>
               </div>
-              <p className="text-red-600 mt-3">Due Date: {dueDate}</p>
+              <p className="text-red-600 mt-3">Due Date: {due_date}</p>
             </div>
             <p className="text-green-600 font-semibold px-2 py-4 whitespace-nowrap block">Submitted</p>
           </div>

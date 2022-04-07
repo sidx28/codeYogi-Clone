@@ -1,16 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AssignmentTile from "./AssignmentTile";
 import H2 from "../H2";
-import { assignmentsDetails } from "../mockData";
+import axios from "axios";
+import { } from "react/cjs/react.production.min";
 
 function Assignment() {
+    const [assignments, setAssignments] = useState([]);
+
+    useEffect(() => {
+        const token = axios.get(`https://api.codeyogi.io/batches/1/assignments`, {
+            withCredentials: true,
+        });
+
+
+        token.then(response => {
+            setAssignments(response.data);
+            console.log(response.data);
+        });
+    }, []);
+
     let i = 0;
+
     return (
         <div className="py-6 px-8 w-full">
             <H2>Assignment List</H2>
             <div className="flex items-center justify-center px-6 py-4 mt-2 bg-gray-50 ">
                 <div className="space-y-8 px-5 w-full">
-                    {assignmentsDetails.map(e => <AssignmentTile assignment={e} key={i++} />)}
+                    {assignments.map(e => <AssignmentTile assignment={e} key={i++} />)}
                 </div>
             </div>
         </div>
