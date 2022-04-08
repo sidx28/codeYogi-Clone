@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import AssignmentTile from "./AssignmentTile";
 import H2 from "../H2";
 import axios from "axios";
-import { } from "react/cjs/react.production.min";
-
+let loadedAssignments = [];
 function Assignment() {
     const [assignments, setAssignments] = useState([]);
 
@@ -11,14 +10,12 @@ function Assignment() {
         const token = axios.get(`https://api.codeyogi.io/batches/1/assignments`, {
             withCredentials: true,
         });
-
-
         token.then(response => {
             setAssignments(response.data);
+            loadedAssignments = assignments;
             console.log(response.data);
         });
     }, []);
-
     let i = 0;
 
     return (

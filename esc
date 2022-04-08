@@ -1,0 +1,29 @@
+[33mcommit 39c6d2ed6e0dcf1b86b4624fb1af462fab06b22a[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Siddharth <sidbharti725@gmail.com>
+Date:   Thu Apr 7 13:19:19 2022 +0530
+
+    functionalize submisson link
+
+[33mcommit ee82c2ffce5a17a5fdeda614a76df6a434d5ab93[m
+Author: Siddharth <sidbharti725@gmail.com>
+Date:   Thu Apr 7 11:29:08 2022 +0530
+
+    added API, Added QuizPage
+
+[33mcommit 6bb5e03d8a3bf2d856b72544050acbaf8fa580de[m
+Author: Siddharth <sidbharti725@gmail.com>
+Date:   Sun Apr 3 18:50:06 2022 +0530
+
+    added lecture tile and use objec destructuring
+
+[33mcommit 4e9d87d91763484df1f7d5c3dc18c769d26edc8f[m
+Author: Siddharth <sidbharti725@gmail.com>
+Date:   Sat Apr 2 17:54:08 2022 +0530
+
+    added redirect file
+
+[33mcommit b6216c18eba15e6e0652f4f4c932d96c0fad0611[m
+Author: Siddharth <sidbharti725@gmail.com>
+Date:   Sat Apr 2 16:17:59 2022 +0530
+
+    initial commit

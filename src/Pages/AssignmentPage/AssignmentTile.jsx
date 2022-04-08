@@ -36,7 +36,7 @@ function AssignmentTile(props) {
         {submissions.length !== 0 && <div className="flex divide-x pt-4 mt-4 divide-gray-200 w-full">
           <Button icon={<AiOutlineCheckCircle className="w-6 h-6 mr-3" />}>Re-Submit</Button>
           <a target='_blank' href={submissionLink} className="inline-flex items-center justify-center flex-1 w-full py-4 font-medium text-center text-indigo-500 underline border-transparent hover:text-indigo-700">
-            <VscLinkExternal className="w-6 h-6 mr-3" />
+            <VscLinkExternal className=" mr-3" />
             See your submission
           </a>
         </div>}
