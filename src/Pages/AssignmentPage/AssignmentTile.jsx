@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import Button from "../Button";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { VscLinkExternal } from "react-icons/vsc";
+import { DateTime } from "luxon";
 
 function AssignmentTile(props) {
   const { id, created_at, title, due_date, submissions } = props.assignment;
-  const dueDate = new Date(due_date);
-  const dueDateString = dueDate.toDateString();
-  const createdOn = new Date(created_at);
-  const createdOnString = createdOn.toDateString();
+  const readableDueDate = DateTime.fromISO(due_date).toLocaleString(DateTime.DATE_FULL);
+  const readableCreatedDate = DateTime.fromISO(created_at).toLocaleString(DateTime.DATE_FULL);
+
   let submissionLink = '';
   if (submissions.length !== 0) {
     submissionLink = (submissions[0].submission_link);
@@ -22,9 +22,9 @@ function AssignmentTile(props) {
             <div>
               <div className="flex flex-row">
                 <h3 className="font-medium text-gray-900">#{id} {title}</h3>
-                <span className="text-gray-500 font-semibold ml-3">( {createdOnString} )</span>
+                <span className="text-gray-500 font-semibold ml-3">( {readableCreatedDate} )</span>
               </div>
-              <p className="text-red-600 mt-3">Due Date: {dueDateString}</p>
+              <p className="text-red-600 mt-3">Due Date: {readableDueDate}</p>
             </div>
             {submissions.length !== 0 && <p className="text-green-600 font-semibold px-2 py-4 whitespace-nowrap block">Submitted</p>}
             {submissions.length === 0 && <p className="text-red-600 font-semibold px-2 py-4 whitespace-nowrap block">Not Submitted</p>}

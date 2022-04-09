@@ -7,6 +7,7 @@ import H3 from "../H3";
 import { VscLinkExternal } from "react-icons/vsc";
 import axios from "axios";
 import MDEditor from "@uiw/react-md-editor";
+import { DateTime } from "luxon";
 function AssignmentDetail() {
 
     const [assignmentDetails, setAssignmentDetails] = useState([]);
@@ -21,8 +22,8 @@ function AssignmentDetail() {
         })
     }, []);
     const { title, due_date, submissions, description } = assignmentDetails;
-    const dueDate = new Date(due_date);
-    const dueDateString = dueDate.toDateString();
+
+    const readableDate = DateTime.fromISO(due_date).toLocaleString(DateTime.DATE_FULL);
 
     let submissionLink = '';
     if (Object.keys(assignmentDetails).length !== 0) {
@@ -43,7 +44,7 @@ function AssignmentDetail() {
                         </div>
                         <div className="items-center py-5 grid grid-cols-3 gap-4">
                             <DT>Due Date</DT>
-                            <DD>{dueDateString}</DD>
+                            <DD>{readableDate}</DD>
                         </div>
                         <div className="items-center py-5 grid grid-cols-3 gap-4">
                             <DT>Description</DT>

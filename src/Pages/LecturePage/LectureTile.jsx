@@ -1,8 +1,11 @@
+import MDEditor from '@uiw/react-md-editor';
+import { DateTime } from 'luxon';
 import React from 'react';
 import H3 from '../H3';
-
 function LectureTile(props) {
-    const { lectureNumber, createdOn, duration, topics, videoLink } = props.lecture;
+    const { created_at, topic, start_time, end_time, recording_url } = props.lecture;
+    const redableDate = DateTime.fromISO(created_at).toLocaleString(DateTime.DATE_MED);
+    const durationOfLecture = DateTime.fromISO(end_time).diff(DateTime.fromISO(start_time)).toFormat('hh:mm:ss');
     return (
         <>
             <li className='list-none'>
@@ -10,19 +13,20 @@ function LectureTile(props) {
                     <div className='flex items-center justify-between w-full p-3 space-x-6'>
                         <div className='flex flex-col justify-between'>
                             <div className='flex flex-row'>
-                                <H3>Lecture #{lectureNumber}</H3>
-                                <span className='text-gray-500'>( {createdOn} )</span>
+                                <H3>Lecture #{props.length - props.i}</H3>
+                                <span className='text-gray-500 ml-2'>( {redableDate} )</span>
                             </div>
-                            <p className='text-gray-500 mt-1 text-sm'>Duration: {duration}</p>
+                            <p className='text-gray-500 mt-1 text-sm'>Duration: {durationOfLecture}</p>
                         </div>
                     </div>
                     <div className='flex-shrink-0 inline-block mt-3 p-1 py-2 ml-10'>
                         <ul className='list-disc'>
-                            {topics.map(e => <li key={e}>{e}</li>)}
+                            <MDEditor.Markdown source={topic}
+                            />
                         </ul>
                     </div>
                     <div className='flex justify-center px-8'>
-                        <a href={videoLink} className='text-sm font-medium w-full text-center py-4 text-gray-500 hover:text-gray-700' target='_blank'>Watch/Download Recording</a>
+                        <a href={recording_url} target='_blank' className='text-sm font-medium w-full text-center py-4 text-gray-500 hover:text-gray-700'>Watch/Download Recording</a>
                     </div>
                 </div>
             </li>
