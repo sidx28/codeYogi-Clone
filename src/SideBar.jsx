@@ -6,7 +6,8 @@ function SideBar() {
         <div className="flex flex-row">
             <div className="h-screen w-60 bg-gray-800 flex flex-col py-5 px-2 fixed">
                 <div className="px-4 flex ">
-                    <h1 className="text-3xl font-extrabold text-white">CODEYOGI</h1>
+                    <img className="h-10" src="https://app.codeyogi.io/assets/CodeYogiLogoWhite.64529273.svg" />
+                    <h1 className="text-2xl font-bold text-white ml-2">CODEYOGI</h1>
                 </div>
                 <NavBar />
             </div>

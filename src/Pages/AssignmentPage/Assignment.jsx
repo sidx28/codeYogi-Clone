@@ -16,7 +16,7 @@ function Assignment() {
 
         });
     }, []);
-    loadedAssignmentsList = assignments;
+    loadedAssignmentsList = [...assignments];
 
     return (
         <div className="py-6 px-8 w-full">
