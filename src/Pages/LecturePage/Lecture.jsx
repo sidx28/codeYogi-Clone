@@ -11,11 +11,11 @@ function Lecture() {
             withCredentials: true,
         });
         token.then((response) => {
-            updateLectureList(response.data);
+            const filteredLectureList = (response.data).filter((e) => e.recording_url);
+            updateLectureList(filteredLectureList);
         })
     }, []);
     loadedLectureList = [...lectureList];
-
 
     return (
         <div className="py-6 px-8 w-full">

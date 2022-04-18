@@ -50,13 +50,16 @@ function AssignmentDetail() {
                             <DT>Description</DT>
                             <DD><MDEditor.Markdown source={description} /></DD>
                         </div>
-                        <div className="py-5 flex flex-row items-center">
+                        {!submissionLink && <div className="py-5">
+                            <Button theme='secondary'>Submit</Button>
+                        </div>}
+                        {submissionLink && <div className="py-5 flex flex-row items-center">
                             <Button theme='secondary'>Re-Submit</Button>
                             <a target="_blank" href={submissionLink} className="text-indigo-700 inline-flex flex-row items-center ml-6 text-base">
                                 <VscLinkExternal className="mr-2 h-3.5 w-3.5" />
                                 See your submission
                             </a>
-                        </div>
+                        </div>}
                     </dl>
                 </div>
             </div>

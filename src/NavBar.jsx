@@ -14,7 +14,7 @@ function NavBar() {
                 <NavLink icon={<MdAssignment className="h-6 w-6" />} to="/assignments">Assignments</NavLink>
             </div>
             <div className="flex flex-col space-y-1">
-                <NavLink icon={<CgProfile className="h-6 w-6" />} to='/profie'>Profile</NavLink>
+                <NavLink icon={<CgProfile className="h-6 w-6" />} to='/profile'>Profile</NavLink>
                 <NavLink icon={<BiLogOut className="h-6 w-6" />} to="/login">Logout</NavLink>
             </div>
         </div>

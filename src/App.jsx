@@ -5,6 +5,7 @@ import Lecture from "./Pages/LecturePage/Lecture";
 import Assignment from "./Pages/AssignmentPage/Assignment";
 import Quiz from "./Pages/QuizPage/Quiz";
 import AssignmentDetail from "./Pages/AssignmentPage/AssignmentDetail";
+import Profile from "./Pages/ProfilePage/Profile";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="assignment/:assignmentNumber/details" element={<AssignmentDetail />} />
       </Route>
       <Route path="quiz" element={<Quiz />} />
+      <Route path="profile" element={<Profile />} />
     </Routes>
   );
 }

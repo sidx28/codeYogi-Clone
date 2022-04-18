@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../Button";
 import { AiOutlineCheckCircle } from "react-icons/ai";
@@ -6,14 +6,16 @@ import { VscLinkExternal } from "react-icons/vsc";
 import { DateTime } from "luxon";
 
 function AssignmentTile(props) {
+
   const { id, created_at, title, due_date, submissions } = props.assignment;
-  const readableDueDate = DateTime.fromISO(due_date).toLocaleString(DateTime.DATE_FULL);
-  const readableCreatedDate = DateTime.fromISO(created_at).toLocaleString(DateTime.DATE_FULL);
+  const readableDueDate = DateTime.fromISO(due_date).toLocaleString(DateTime.DATE_HUGE);
+  const readableCreatedDate = DateTime.fromISO(created_at).toLocaleString(DateTime.DATE_HUGE);
 
   let submissionLink = '';
   if (submissions.length !== 0) {
     submissionLink = (submissions[0].submission_link);
-  }
+  };
+
   return (
     <li className="w-full border-2 border-gray-100 bg-white rounded-lg shadow-lg mb-5 list-none " >
       <div className="flex flex-col items-center justify-between w-full p-3">
@@ -31,10 +33,10 @@ function AssignmentTile(props) {
           </div>
         </Link>
         {submissions.length === 0 && <div className="w-full mt-4 pt-4">
-          <Button icon={<AiOutlineCheckCircle className="w-6 h-6 mr-3" />}>Submit</Button>
+          <Button onClick={props.onClick} icon={<AiOutlineCheckCircle className="w-6 h-6 mr-3" />}>Submit</Button>
         </div>}
         {submissions.length !== 0 && <div className="flex divide-x pt-4 mt-4 divide-gray-200 w-full">
-          <Button icon={<AiOutlineCheckCircle className="w-6 h-6 mr-3" />}>Re-Submit</Button>
+          <Button onClick={props.onClick} icon={<AiOutlineCheckCircle className="w-6 h-6 mr-3" />}>Re-Submit</Button>
           <a target='_blank' href={submissionLink} className="inline-flex items-center justify-center flex-1 w-full py-4 font-medium text-center text-indigo-500 underline border-transparent hover:text-indigo-700">
             <VscLinkExternal className=" mr-3" />
             See your submission
