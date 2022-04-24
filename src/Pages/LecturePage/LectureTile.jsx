@@ -1,11 +1,13 @@
 import MDEditor from '@uiw/react-md-editor';
-import { DateTime } from 'luxon';
+import { BiLinkExternal } from 'react-icons/bi'
 import React from 'react';
+import { convertToRedableDate, convertToRedableDuration } from '../../ExtraFunctions';
 import H3 from '../H3';
 function LectureTile(props) {
     const { created_at, topic, start_time, end_time, recording_url } = props.lecture;
-    const redableDate = DateTime.fromISO(created_at).toLocaleString(DateTime.DATE_MED);
-    const durationOfLecture = DateTime.fromISO(end_time).diff(DateTime.fromISO(start_time)).toFormat('hh:mm:ss');
+    const redableDate = convertToRedableDate(created_at);
+    const durationOfLecture = convertToRedableDuration(start_time, end_time);
+
     return (
         <>
             <li className='list-none'>
@@ -21,12 +23,15 @@ function LectureTile(props) {
                     </div>
                     <div className='flex-shrink-0 inline-block mt-3 p-1 py-2 ml-10'>
                         <ul className='list-disc'>
-                            <MDEditor.Markdown source={topic}
+                            <MDEditor.Markdown className='prose !text-black prose-bullets prose-li:font-medium !bg-white max-w-none' source={topic}
                             />
                         </ul>
                     </div>
                     <div className='flex justify-center px-8'>
-                        <a href={recording_url} target='_blank' className='text-sm font-medium w-full text-center py-4 text-gray-500 hover:text-gray-700'>Watch/Download Recording</a>
+                        <a href={recording_url} target='_blank' className='text-sm font-medium w-full py-4 text-gray-500 hover:text-gray-700 inline-flex items-center justify-center'>
+                            <BiLinkExternal className='w-4 h-4 mr-1 sm:mr-3 sm:w-6 sm:h-6' />
+                            Watch/Download Recording
+                        </a>
                     </div>
                 </div>
             </li>

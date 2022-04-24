@@ -1,7 +1,15 @@
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      typography: ({ theme }) => ({
+        bullets: {
+          css: { '--tw-prose-bullets': theme('colors.black') },
+        },
+      }),
+    },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography')
+  ],
 };

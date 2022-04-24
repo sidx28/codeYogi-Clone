@@ -1,28 +1,37 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+
+import { useState, useEffect } from "react";
+import { getCachedData, getLectures } from "../../api";
 import H2 from '../H2'
 import LectureTile from "./LectureTile";
-let loadedLectureList = [];
+import { ImSpinner7 } from 'react-icons/im';
 function Lecture() {
     let i = 0;
-    const [lectureList, updateLectureList] = useState(loadedLectureList || []);
+    const [spinner, showSpinner] = useState(true);
+    const cachedLectures = getCachedData('lectures') || [];
+    const [lectureList, setLectureList] = useState(cachedLectures);
     useEffect(() => {
-        const token = axios.get('https://api.codeyogi.io/batches/1/sessions', {
-            withCredentials: true,
+        const promise = getLectures();
+        showSpinner(true);
+        promise.then((lectures) => {
+            setLectureList(lectures);
+            showSpinner(false);
         });
-        token.then((response) => {
-            const filteredLectureList = (response.data).filter((e) => e.recording_url);
-            updateLectureList(filteredLectureList);
-        })
+
     }, []);
-    loadedLectureList = [...lectureList];
+    console.log(spinner);
 
     return (
         <div className="py-6 px-8 w-full">
-            <H2>Lecture List</H2>
-            <div className="flex items-center justify-center px-6 py-4 mt-2 bg-gray-50 ">
-                <div className="space-y-8 px-5 w-full">
-                    {lectureList.map(e => <LectureTile length={lectureList.length} i={i++} lecture={e} key={e.id} />)}
+            <div className="md:mt-10">
+                {spinner && <div className="flex items-center">
+                    <ImSpinner7 className="h-5 w-5 mr-2 animate-spin" />
+                    Loading...
+                </div>}
+                <H2>Lecture List</H2>
+                <div className="flex items-center justify-center px-6 py-4 mt-2 bg-gray-50 ">
+                    <div className="space-y-8 px-5 w-full">
+                        {lectureList.map(e => <LectureTile length={lectureList.length} i={i++} lecture={e} key={e.id} />)}
+                    </div>
                 </div>
             </div>
         </div>
