@@ -1,29 +1,31 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Button from "../Button";
 import DD from "../DD";
 import DT from "../DT";
 import H3 from "../H3";
+import { ImSpinner7 } from 'react-icons/im';
 import { VscLinkExternal } from "react-icons/vsc";
-import axios from "axios";
 import MDEditor from "@uiw/react-md-editor";
-import { DateTime } from "luxon";
+import { convertToRedableDate } from "../../ExtraFunctions";
+import { getAssignmentDetail, getCachedData } from "../../api";
 function AssignmentDetail() {
+    const [spinner, setShowSpinner] = useState(true);
+    const cachedAssignmentDetail = getCachedData('assignmnetDetail') || [];
+    const [assignmentDetails, setAssignmentDetails] = useState(cachedAssignmentDetail);
+    const id = +(useParams().assignmentNumber);
 
-    const [assignmentDetails, setAssignmentDetails] = useState([]);
-    const data = useParams();
-    const assignmentNumber = data.assignmentNumber;
     useEffect(() => {
-        const token = axios.get(`https://api.codeyogi.io/assignments/${+assignmentNumber}`, {
-            withCredentials: true,
+        const promise = getAssignmentDetail(id);
+        setShowSpinner(true);
+        promise.then((assignmentDetail) => {
+            setAssignmentDetails(assignmentDetail);
+            setShowSpinner(false);
         });
-        token.then(response => {
-            setAssignmentDetails(response.data);
-        })
     }, []);
     const { title, due_date, submissions, description } = assignmentDetails;
 
-    const readableDate = DateTime.fromISO(due_date).toLocaleString(DateTime.DATE_FULL);
+    const readableDate = convertToRedableDate(due_date);
 
     let submissionLink = '';
     if (Object.keys(assignmentDetails).length !== 0) {
@@ -33,7 +35,11 @@ function AssignmentDetail() {
     }
 
     return (
-        <div className="pt-10">
+        <div className="mt-10">
+            {spinner && <div className="flex items-center">
+                <ImSpinner7 className="h-5 w-5 mr-2 animate-spin" />
+                Loading...
+            </div>}
             <div className="bg-white p-4 rounded-md m-6 ">
                 <H3>Assignment Detail</H3>
                 <div className="mt-5 border-t border-gray-200">
@@ -48,13 +54,13 @@ function AssignmentDetail() {
                         </div>
                         <div className="items-center py-5 grid grid-cols-3 gap-4">
                             <DT>Description</DT>
-                            <DD><MDEditor.Markdown source={description} /></DD>
+                            <DD><MDEditor.Markdown className="prose !bg-white !text-black  prose-li:font-medium" source={description} /></DD>
                         </div>
                         {!submissionLink && <div className="py-5">
-                            <Button theme='secondary'>Submit</Button>
+                            <Button padding='small' theme='secondary'>Submit</Button>
                         </div>}
                         {submissionLink && <div className="py-5 flex flex-row items-center">
-                            <Button theme='secondary'>Re-Submit</Button>
+                            <Button padding='small' theme='secondary'>Re-Submit</Button>
                             <a target="_blank" href={submissionLink} className="text-indigo-700 inline-flex flex-row items-center ml-6 text-base">
                                 <VscLinkExternal className="mr-2 h-3.5 w-3.5" />
                                 See your submission

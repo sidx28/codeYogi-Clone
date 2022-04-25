@@ -3,18 +3,19 @@ import { Link } from "react-router-dom";
 import Button from "../Button";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { VscLinkExternal } from "react-icons/vsc";
-import { DateTime } from "luxon";
+import { convertToRedableDate } from "../../ExtraFunctions";
 
 function AssignmentTile(props) {
 
   const { id, created_at, title, due_date, submissions } = props.assignment;
-  const readableDueDate = DateTime.fromISO(due_date).toLocaleString(DateTime.DATE_HUGE);
-  const readableCreatedDate = DateTime.fromISO(created_at).toLocaleString(DateTime.DATE_HUGE);
+  const readableDueDate = convertToRedableDate(due_date);
+  const readableCreatedDate = convertToRedableDate(created_at);
 
   let submissionLink = '';
   if (submissions.length !== 0) {
     submissionLink = (submissions[0].submission_link);
   };
+  console.log('running');
 
   return (
     <li className="w-full border-2 border-gray-100 bg-white rounded-lg shadow-lg mb-5 list-none " >

@@ -18,7 +18,6 @@ function Lecture() {
         });
 
     }, []);
-    console.log(spinner);
 
     return (
         <div className="py-6 px-8 w-full">
