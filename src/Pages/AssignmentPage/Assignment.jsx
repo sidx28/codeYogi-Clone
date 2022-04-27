@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AssignmentTile from "./AssignmentTile";
 import H2 from "../H2";
-import { ImSpinner7 } from 'react-icons/im'
-import SubmissionPopup from "./SubmissionPopup";
+import { ImSpinner7 } from 'react-icons/im';
 import { getAssignmentList, getCachedData } from "../../api";
 
 function Assignment() {
@@ -19,14 +18,7 @@ function Assignment() {
         });
     }, []);
 
-    const [showPopup, toggleShowPopup] = useState(false);
 
-    const showSubmitFormPopup = () => {
-        toggleShowPopup(!showPopup);
-    };
-    const onBlankSpaceClick = () => {
-        toggleShowPopup(!showPopup);
-    };
     return (
         <div className="py-6 px-8 w-full">
             <div className="md:mt-10">
@@ -35,10 +27,9 @@ function Assignment() {
                     Loading...
                 </div>}
                 <H2>Assignment List</H2>
-                <div className="fixed w-full z-10">{showPopup && <SubmissionPopup onClick={onBlankSpaceClick} />}</div>
                 <div className="flex items-center justify-center px-6 py-4 mt-2 bg-gray-50 ">
                     <div className="space-y-8 px-5 w-full">
-                        {assignments.map(e => <AssignmentTile onClick={showSubmitFormPopup} assignment={e} key={e.id} />)}
+                        {assignments.map(e => <AssignmentTile assignment={e} key={e.id} />)}
                     </div>
                 </div>
             </div>

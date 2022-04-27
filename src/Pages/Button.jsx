@@ -9,10 +9,10 @@ function Button(props) {
         if (props.padding === 'large') {
             themeClass = themeClass + 'px-10';
         }
-    }
+    };
     return (
         <>
-            <button onClick={props.onClick} className={themeClass}>
+            <button {...props} className={themeClass}>
                 <div className="flex flex-row justify-between items-center">
                     {props.icon}
                     {props.children}

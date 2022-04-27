@@ -44,7 +44,14 @@ export const getAssignmentDetail = (id) => {
         .catch((e) => console.log(e))
         .then((response) => {
             const assignmentDetail = response.data;
-            cacheData('assignmentDetail', assignmentDetail);
+            cacheData(`assignmentDetail${id}`, assignmentDetail);
             return assignmentDetail;
         });
+};
+
+export const submitAssignment = (submissionLink, assignmentNumber) => {
+    axios.put(CODEYOGI_BASE_URL + `assignment/${assignmentNumber}/submit`, { submissionLink: submissionLink }, {
+        withCredentials: true,
+    });
+    console.log(submissionLink);
 };

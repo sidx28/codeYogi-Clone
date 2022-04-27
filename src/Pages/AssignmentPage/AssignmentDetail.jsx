@@ -10,10 +10,11 @@ import MDEditor from "@uiw/react-md-editor";
 import { convertToRedableDate } from "../../ExtraFunctions";
 import { getAssignmentDetail, getCachedData } from "../../api";
 function AssignmentDetail() {
-    const [spinner, setShowSpinner] = useState(true);
-    const cachedAssignmentDetail = getCachedData('assignmnetDetail') || [];
-    const [assignmentDetails, setAssignmentDetails] = useState(cachedAssignmentDetail);
     const id = +(useParams().assignmentNumber);
+    const [spinner, setShowSpinner] = useState(true);
+    const cachedAssignmentDetail = getCachedData(`assignmnetDetail${id}`) || [];
+    const [assignmentDetails, setAssignmentDetails] = useState(cachedAssignmentDetail);
+
 
     useEffect(() => {
         const promise = getAssignmentDetail(id);
