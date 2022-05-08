@@ -64,7 +64,7 @@ export const getUserDetail = async () => {
     withCredentials: true,
   });
   const userDetail = response.data;
-  cacheData("userDetail", userDetail);
+  cacheData("userDetail", userDetail.data);
   return userDetail;
 };
 
