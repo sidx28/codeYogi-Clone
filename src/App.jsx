@@ -7,7 +7,6 @@ import Quiz from "./Pages/QuizPage/Quiz";
 import AssignmentDetail from "./Pages/AssignmentPage/AssignmentDetail";
 import Profile from "./Pages/ProfilePage/Profile";
 
-
 function App() {
   return (
     <Routes>
@@ -15,10 +14,13 @@ function App() {
       <Route path="/" element={<MainLayout />}>
         <Route path="assignments" element={<Assignment />} />
         <Route path="lectures" element={<Lecture />} />
-        <Route path="assignment/:assignmentNumber/details" element={<AssignmentDetail />} />
+        <Route
+          path="assignment/:assignmentNumber/details"
+          element={<AssignmentDetail />}
+        />
+        <Route path="profile" element={<Profile />} />
       </Route>
       <Route path="quiz" element={<Quiz />} />
-      <Route path="profile" element={<Profile />} />
     </Routes>
   );
 }

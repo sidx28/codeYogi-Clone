@@ -1,10 +1,10 @@
 import React from "react";
-import SubmissionPopup from "../AssignmentPage/SubmissionPopup";
+import ProfilePageForm from "./ProfilePageForm";
 function Profile() {
-    return (
-        <>
-            <SubmissionPopup />
-        </>
-    );
+  return (
+    <div className="w-full h-full">
+      <ProfilePageForm />
+    </div>
+  );
 }
 export default Profile;
